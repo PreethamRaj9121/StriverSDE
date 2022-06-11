@@ -1,0 +1,22 @@
+int calculateMinPatforms(int arr[], int dep[], int n) {
+    // Write your code here.
+    int count=1;
+    int platformsRequired=1;
+    int i=1,j =0;
+    
+    sort(arr,arr+n);
+    sort(dep,dep+n);
+    while(i<n && j<n){
+        if(arr[i]<=dep[j]){
+            count++;
+            i++;
+        }
+        else if(arr[i]>dep[j]){
+            count--;
+            j++;
+        }
+        platformsRequired=max(platformsRequired,count);
+    }
+    return platformsRequired;
+    
+}
