@@ -1,0 +1,56 @@
+// C++ Solution Approach 1 T.C-O(N!) S.C-O(N)
+void permute(string &s,string &ds ,vector<string>&ans,int freq[])
+{
+    if(ds.size()==s.size()){
+        ans.push_back(ds);
+        return;
+    }
+    for(int i=0;i<s.size();i++){
+        if(freq[i]==0){
+            ds.push_back(s[i]);
+            freq[i]=1;
+            permute(s,ds,ans,freq);
+            freq[i]=0;
+            ds.pop_back();
+        }
+    }
+}
+
+vector<string> findPermutations(string &s) {
+    
+    vector<string>ans;
+    string ds="";
+    int freq[s.size()];
+    for(int i=0;i<s.size();i++){
+        freq[i]=0;
+    }
+    permute(s,ds,ans,freq);
+    return ans;
+    
+}
+
+
+// C++ Optimised Approach T.C-O(N!) S.C-O(1)
+    
+void permute(int index,string &s,vector<string>&ans)
+{
+    if(index==s.size()){
+        ans.push_back(s);
+        return;
+    }
+    for(int i=index;i<s.size();i++){
+        swap(s[i],s[index]);
+        permute(index+1,s,ans);
+        swap(s[i],s[index]);
+        
+    }
+}
+
+vector<string> findPermutations(string &s) {
+    
+    vector<string>ans;
+    permute(0,s,ans);
+    return ans;
+    
+}
+
