@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        
+        // T.C - O(n) S.C- O(1)
+        int n=nums.size();
+        int x=0;
+        for(int i=0;i<n;i++){
+            x=x^nums[i];
+        }
+        return x;
+
+        // T.C-O(N) S.C-O(N)
+//         int n=nums.size();
+//         unordered_map<int,int>mp;
+//         int ans=0;
+        
+//         for(int i=0;i<n;i++) mp[nums[i]]++;
+        
+//         for(auto x :mp){
+//             if(x.second==1){
+//                 ans=x.first;
+//             }
+//         }
+//         return ans;
+    }
+    
+    
+};
