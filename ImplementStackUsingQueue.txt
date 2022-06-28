@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+class Stack {
+   // Define the data members.
+queue<int> q1;
+   queue<int> q2;
+
+   public:
+   Stack() {
+       // Implement the Constructor.
+   }
+
+   /*----------------- Public Functions of Stack -----------------*/
+
+   int getSize() {
+       // Implement the getSize() function.
+       return q1.size();  //simple
+   }
+
+   bool isEmpty() {
+       // Implement the isEmpty() function.
+       return q1.empty();  //simple
+   }
+
+   void push(int element) {
+       // Implement the push() function.
+       q1.push(element);  //simple
+   }
+
+   int pop() {
+       // Implement the pop() function.
+       if(q1.empty()){
+           return -1;
+       }else{
+           while(q1.size()!=1){ // pop evrything just b4 last element
+               q2.push(q1.front());
+               q1.pop();
+           }
+           int temp = q1.front(); // store it to return
+           q1.pop();    // pop that also
+           while(!q2.empty()){  // replenish q1 again
+               q1.push(q2.front());
+               q2.pop();
+           }
+           return temp;
+       }
+   }
+
+   int top() {
+       // Implement the top() function.
+       if(q1.empty()){
+           return -1;
+       }else{
+           while(q1.size()!=1){
+               q2.push(q1.front());
+               q1.pop();
+           }
+           int temp = q1.front(); //store to return later
+           //q1.pop(); // same as above
+           q2.push(q1.front()); //just push last ele also in q2, as we dont have to pop it
+           q1.pop();
+           while(!q2.empty()){  // replenish q1
+               q1.push(q2.front());
+               q2.pop();
+           }
+           return temp;
+       }
+   }
+};
